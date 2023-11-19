@@ -6,11 +6,13 @@ from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
 
+from UI import Ui_MainWindow
 
-class MainWindow(QMainWindow):
+
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("UI.ui", self)
+        self.setupUi(self)
         self.do_paint = False
         self.paint_button.clicked.connect(self.paint)
 
@@ -29,8 +31,9 @@ class MainWindow(QMainWindow):
     def draw_circles(self, qp):
         r1 = random.randint(1, 250)
         r2 = random.randint(1, 250)
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         qp.drawEllipse(10, 10, r1, r1)
+        qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
         qp.drawEllipse(250, 10, r2, r2)
 
 
